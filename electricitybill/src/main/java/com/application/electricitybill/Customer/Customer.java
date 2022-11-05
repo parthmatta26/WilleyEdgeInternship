@@ -3,6 +3,7 @@ package com.application.electricitybill.Customer;
 import com.application.electricitybill.Bill.Bill;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,8 +13,8 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long customerId;
 
-    //@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "customer")
-//    private List<Bill> bill;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
+    private List<Bill> bill = new ArrayList<>();
 
     private String customerName;
     private String areaCode;
@@ -28,13 +29,13 @@ public class Customer {
     public Customer() {
     }
 
-//    public List<Bill> getBill() {
-//        return bill;
-//    }
-//
-//    public void setBill(List<Bill> bill) {
-//        this.bill = bill;
-//    }
+    public List<Bill> getBill() {
+        return bill;
+    }
+
+    public void setBill(List<Bill> bill) {
+        this.bill = bill;
+    }
 
     public long getCustomerId() {
         return customerId;

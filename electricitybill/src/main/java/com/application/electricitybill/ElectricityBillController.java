@@ -34,9 +34,9 @@ public class ElectricityBillController {
         return customerService.deleteCustomer(customerId);
     }
 
-    @PostMapping("/saveBill")
-    public int saveBill(@RequestBody Bill bill) {
-        return billService.saveBill(bill);
+    @PostMapping("/saveBill/{customerId}")
+    public int saveBill(@RequestBody Bill bill, @PathVariable long customerId) {
+        return billService.saveBill(bill, customerId);
     }
 
     @GetMapping("/generate/{customerId}/{month}")

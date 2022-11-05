@@ -22,8 +22,10 @@ public class BillService {
         }
     }
 
-    public int saveBill(Bill bill) {
-        validateUser(bill.getCustomerId());
+    public int saveBill(Bill bill, long customerId) {
+        validateUser(customerId);
+        Customer c = service.getById(customerId);
+        bill.setCustomer(c);
         repo.save(bill);
         return 1;
     }
@@ -38,6 +40,7 @@ public class BillService {
 
     public List<Bill> billHistory(long customerId) {
         validateUser(customerId);
-        return repo.findBycustomerId(customerId);
+        Customer c = service.getById(customerId);
+        return c.getBill();
     }
 }

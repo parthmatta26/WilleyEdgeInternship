@@ -12,17 +12,24 @@ public class Bill {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long billNo;
 
-//    @ManyToOne
-//    @JoinColumn(name = "customer.customerId")
-//    private Customer customer;
 
-    private long customerId;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
     private int unitsConsumed;
     private LocalDate billDate;
     private double billAmount;
 
-    public Bill(long customerId, int unitsConsumed, String billDate, double billAmount) {
-        this.customerId = customerId;
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Bill(int unitsConsumed, String billDate, double billAmount) {
         this.unitsConsumed = unitsConsumed;
         this.billDate = LocalDate.parse(billDate);
         this.billAmount = calcBillAmount();
@@ -30,22 +37,6 @@ public class Bill {
 
     public Bill() {
     }
-
-    public long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
-    }
-
-    //    public Customer getCustomer() {
-//        return customer;
-//    }
-//
-//    public void setCustomer(Customer customer) {
-//        this.customer = customer;
-//    }
 
     public long getBillNo() {
         return billNo;
@@ -93,14 +84,4 @@ public class Bill {
         return billamount;
     }
 
-    @Override
-    public String toString() {
-        return "Bill{" +
-                "billNo=" + billNo +
-                ", customerId=" + customerId +
-                ", unitsConsumed=" + unitsConsumed +
-                ", billDate=" + billDate +
-                ", billAmount=" + billAmount +
-                '}';
-    }
 }
