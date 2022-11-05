@@ -1,0 +1,3 @@
+INSERT INTO Customers VALUES (1, 'Aleshia', 'CT2 7PP', 1835703597);
+INSERT INTO Customers VALUES (2, 'Evan', 'HP11 2AX', 1937864715);
+INSERT INTO Customers VALUES (3, 'France', 'BH6 3BE', 1347368222);
